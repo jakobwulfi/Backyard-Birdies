@@ -12,7 +12,7 @@ import FirebaseFirestore
 struct AddBirdspotView: View {
     @Environment(BirdspotController.self) var birdspotController : BirdspotController
     @Environment(LocationController.self) var locationController : LocationController
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.dismiss) private var dismiss
     @State private var selectedPhoto: PhotosPickerItem?
     @State private var selectedImageData: Data?
     @State private var species: Species? = nil
@@ -91,7 +91,7 @@ struct AddBirdspotView: View {
             }
             .alert("Birdspotting Added", isPresented: $showSuccessAlert) {
                 Button("OK") {
-                    presentationMode.wrappedValue.dismiss()
+                    dismiss()
                 }
             } message: {
                 Text("Your birdspotting has been added successfully!")
